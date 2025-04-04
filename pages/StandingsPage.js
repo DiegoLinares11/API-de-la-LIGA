@@ -16,22 +16,29 @@ const StandigsPage = () => {
 
             const championsLeague = [1, 2, 3, 4];
             const descenso = [18, 19, 20];
+            const europaLeague = [5];
+            const conferenceLeague = [6];
 
             const teams = raw.map((team) => {
                 const efficiency = ((team.all.win * 100) / team.all.played);
 
                 let rowClass = "";
                 if (championsLeague.includes(team.rank)) {
-                    rowClass = "table-success";
+                    rowClass = "table-info";
                 } else if (descenso.includes(team.rank)) {
                     rowClass = "table-danger";
+                } else if (europaLeague.includes(team.rank)) {
+                    rowClass = "table-warning";
+                }
+                else if (conferenceLeague.includes(team.rank)) {
+                    rowClass = "table-success";
                 }
 
                 return {
                     id: team.team.id,
                     rank: team.rank,
                     logo: team.team.logo,
-                    name: team.team.name,
+                    name: `<a href="#team?id=${team.team.id}">${team.team.name}</a>`,
                     points: team.points,
                     played: team.all.played,
                     win: team.all.win,
@@ -42,7 +49,7 @@ const StandigsPage = () => {
                     goalsDiff: team.goalsDiff,
                     efficiency: Math.round(efficiency),
                     rowClass: rowClass
-                }
+                }                
             });
 
             const totals = teams.reduce((carry, team) => {
