@@ -1,5 +1,3 @@
-
-
 const StandingsTitle = () => {
 
     const render = (league) => {
@@ -12,11 +10,9 @@ const StandingsTitle = () => {
         `;
 
     }
-
     return {
         render
     }
 
 }
-
 export default StandingsTitle;
